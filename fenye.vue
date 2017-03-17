@@ -1,19 +1,19 @@
 <template>
 <div class="w100"> 
 	<div class="auto">
+	    <a @click='changepage(1)' class='nomal'>首页</a>
 		<a @click='goup' class='nomal' :class='{active:nowpage=="1"}'>上一页</a>
 		<a v-for='val in nowshow' @click='changepage(val)' :class='{show:val==nowpage}' class='number'>{{val}}</a>	
 		<a @click='godown' class='nomal' :class='{active:nowpage==zong}'>下一页</a>
-		<span>总页数{{zong}}</span>
-		<input type="text" v-model.trim='jump'/>
+		<a @click='changepage(page)' class='nomal'>尾页</a>
+		
+		<span style="margin:0 4px;letter-spacing: 1px; ">当前第{{ nowpage }}页/共{{zong}}页转到</span>
+		<input type="text" v-model.trim='jump' style="text-align:center;"/>
 		<a @click='changepage(jump)' class='nomal'>跳转</a>
 	</div>
 </div>
 </template>
 <script>
-/*内容大致是，当点击分页按钮时，
-把当前页的页码参数，赋值给store里的state中的自定义熟悉中，
-在调用action中的ajax。这个也是我自己项目中用的分页，还好用*/
 import { mapState,mapActions } from 'vuex'
 	export default{
 		props:["page"],
@@ -95,7 +95,7 @@ clear:both;
 overflow:auto;
 }
 .auto{
-width:450px;
+margin-right:30px;
 float:right;
 font-size:12px;
 }
